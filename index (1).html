@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мини-студия визиток</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Страницы-визитки, прайсы, баннеры и логотипы для мастеров и малого бизнеса. От 300 ₽, готово за 1–2 дня. Заказ в Telegram.">
+<meta name="theme-color" content="#ffe45c">
+<meta property="og:title" content="Мини-студия визиток">
+<meta property="og:description" content="Страницы-визитки, прайсы, баннеры и логотипы. От 300 ₽, готово за 1–2 дня.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ffe45c'/%3E%3Crect x='3' y='3' width='26' height='26' fill='none' stroke='%23101010' stroke-width='3'/%3E%3Crect x='9' y='10' width='14' height='4' fill='%232b4bff'/%3E%3Crect x='9' y='18' width='9' height='4' fill='%23101010'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@600;800&display=swap">
+<style>
+/* Layout: centered column. Flat yellow ground, black ink, thick borders with hard offset shadows, slightly tilted stickers. One blue accent. */
+:root{
+  --bg:#ffe45c; --surface:#ffffff; --fg:#101010; --muted:#3b3b3b; --line:#101010; --sh:#101010;
+  --accent:#2b4bff; --accent-fg:#ffffff;
+  --display:'Unbounded',system-ui,sans-serif; --body:'Golos Text',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#141417; --surface:#1f1f25; --fg:#f4f4f5; --muted:#b9b9c2; --line:#f4f4f5; --sh:#f4f4f5;
+    --accent:#8296ff; --accent-fg:#0b0b12; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141417; --surface:#1f1f25; --fg:#f4f4f5; --muted:#b9b9c2; --line:#f4f4f5; --sh:#f4f4f5;
+  --accent:#8296ff; --accent-fg:#0b0b12; color-scheme:dark;
+}
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--body); font-size:16px; line-height:1.55;
+  padding-block:0 64px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap{max-width:940px; margin:0 auto; display:grid; gap:76px}
+h1,h2,h3{font-family:var(--display); margin:0; line-height:1.15; text-wrap:balance}
+h2{font-size:clamp(1.4rem,5.2vw,2rem); font-weight:800; text-align:center}
+h3{font-size:1rem; font-weight:600}
+p{margin:0}
+.muted{color:var(--muted)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px}
+
+/* top bar */
+.top{display:flex; justify-content:space-between; align-items:center; gap:12px; padding-block:18px}
+.brand{font-family:var(--display); font-weight:800; font-size:.95rem}
+.top nav{display:flex; align-items:center; gap:22px}
+.top nav a{font-size:14px; font-weight:600; text-decoration:none}
+.top nav a.go{background:var(--accent); color:var(--accent-fg); border:2px solid var(--line); box-shadow:3px 3px 0 var(--sh); border-radius:10px; padding:8px 14px}
+@media (max-width:640px){ .top nav a:not(.go){display:none} }
+
+/* buttons */
+.btn{display:inline-block; font:inherit; font-weight:600; text-decoration:none; text-align:center; cursor:pointer;
+  background:var(--accent); color:var(--accent-fg); border:2px solid var(--line); border-radius:12px; padding:14px 24px; box-shadow:4px 4px 0 var(--sh)}
+.btn.alt{background:var(--surface); color:var(--fg)}
+.btn:hover,.pick:hover{transform:translate(-1px,-1px)}
+.cta-row{display:flex; flex-wrap:wrap; gap:14px; justify-content:center}
+
+/* hero */
+.hero{display:grid; gap:26px; justify-items:center; text-align:center; max-width:700px; margin:0 auto; padding-top:24px}
+.hero h1{font-size:clamp(2rem,8.6vw,3.5rem); font-weight:800}
+.mark{display:inline-block; background:var(--accent); color:var(--accent-fg); padding:.02em .22em; transform:rotate(-1.6deg); border:2px solid var(--line)}
+.lead{font-size:1.1rem; color:var(--muted); max-width:48ch}
+.stickers{display:flex; flex-wrap:wrap; gap:16px; justify-content:center}
+.sticker{font-family:var(--display); font-weight:800; font-size:1rem; background:var(--surface); color:var(--fg); border:2px solid var(--line); box-shadow:4px 4px 0 var(--sh); padding:10px 16px; border-radius:10px}
+.sticker:nth-child(1){transform:rotate(-3deg)}
+.sticker:nth-child(2){transform:rotate(2deg)}
+.sticker:nth-child(3){transform:rotate(-1.5deg)}
+
+/* sections */
+.sec{display:grid; gap:26px; justify-items:center}
+.sec>*{width:100%}
+.sub{color:var(--muted); text-align:center; max-width:52ch; margin:-12px auto 0}
+.who{text-align:center; max-width:46ch; margin:0 auto; font-size:1.1rem}
+
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:18px}
+.card{background:var(--surface); border:2px solid var(--line); border-radius:12px; box-shadow:5px 5px 0 var(--sh); padding:20px 16px; display:grid; gap:10px; justify-items:center; text-align:center; align-content:start; min-width:0}
+.card.wide{grid-column:1/-1; background:var(--accent); color:var(--accent-fg)}
+.card.wide .muted{color:inherit}
+.card.wide .pick{background:#ffffff; color:#101010}
+.price{font-family:var(--display); font-weight:800; font-size:1.55rem}
+.pick{font:inherit; font-weight:600; font-size:14px; cursor:pointer; background:var(--accent); color:var(--accent-fg);
+  border:2px solid var(--line); border-radius:10px; padding:10px 18px; box-shadow:3px 3px 0 var(--sh)}
+
+/* demos */
+.demos{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); gap:22px}
+.demo{border:2px solid var(--line); border-radius:12px; box-shadow:5px 5px 0 var(--sh); padding:22px 16px; display:grid; gap:14px; justify-items:center; text-align:center; min-width:0}
+.demo:nth-child(1){rotate:-1.2deg}
+.demo:nth-child(2){rotate:.9deg}
+.demo:nth-child(3){rotate:-.6deg}
+.demo .av{width:60px; height:60px; border-radius:50%; display:grid; place-items:center; font-family:var(--display); font-weight:800; font-size:24px; color:#fff; border:2px solid #101010}
+.demo b{font-size:1.05rem}
+.demo .t{font-size:14px; opacity:.8}
+.demo .pick{width:100%; color:#fff; padding:12px; border-color:#101010; box-shadow:3px 3px 0 #101010}
+.demo .r{display:flex; justify-content:space-between; width:100%; gap:10px; font-size:14px; padding:6px 0; border-bottom:2px dotted rgba(16,16,16,.35)}
+.demo .r span:last-child{font-weight:700}
+.note{font-size:13px; color:var(--muted); text-align:center}
+
+/* steps */
+.steps{list-style:none; margin:0 auto; padding:0; display:grid; gap:14px; counter-reset:s; max-width:620px}
+.steps li{counter-increment:s; display:grid; grid-template-columns:46px minmax(0,1fr); gap:16px; align-items:center; background:var(--surface); border:2px solid var(--line); border-radius:12px; padding:14px 16px; box-shadow:4px 4px 0 var(--sh)}
+.steps li::before{content:counter(s); width:46px; height:46px; border-radius:10px; background:var(--accent); color:var(--accent-fg); border:2px solid var(--line); display:grid; place-items:center; font-family:var(--display); font-weight:800; font-size:1.15rem}
+.steps b{display:block}
+
+/* faq */
+.faq{display:grid; gap:12px; max-width:700px; margin:0 auto}
+.faq details{background:var(--surface); border:2px solid var(--line); border-radius:12px; padding:14px 16px; box-shadow:3px 3px 0 var(--sh)}
+.faq summary{cursor:pointer; font-weight:600}
+.faq details p{margin-top:10px; color:var(--muted)}
+
+/* form */
+.form{background:var(--surface); border:2px solid var(--line); border-radius:14px; box-shadow:7px 7px 0 var(--sh); padding:24px 20px; display:grid; gap:16px; min-width:0; max-width:620px; margin:0 auto}
+.field{display:grid; gap:6px; min-width:0}
+.field label,.field .lab{font-size:13px; font-weight:600}
+.field input,.field select,.field textarea{
+  width:100%; font:inherit; font-size:16px; color:var(--fg); background:var(--bg);
+  border:2px solid var(--line); border-radius:10px; padding:12px 14px}
+.field textarea{min-height:150px; resize:vertical}
+.out{font:14px/1.5 var(--body); white-space:pre-wrap; background:var(--bg); border:2px dashed var(--line); border-radius:10px; padding:14px; min-height:110px; overflow-wrap:anywhere}
+.status{min-height:1.5em; font-size:14px; color:var(--muted); text-align:center}
+#fallback{width:100%; min-height:130px; font:14px/1.5 var(--body); border-radius:10px; border:2px solid var(--line); background:var(--bg); color:var(--fg); padding:12px}
+
+footer{font-size:14px; color:var(--muted); display:grid; gap:6px; justify-items:center; text-align:center}
+
+/* mobile sticky bar */
+.stick{display:none}
+@media (max-width:720px){
+  body{padding-bottom:92px}
+  .stick{display:block; position:fixed; left:0; right:0; bottom:0; z-index:5; text-align:center; text-decoration:none; font-weight:600;
+    background:var(--accent); color:var(--accent-fg); border-top:2px solid var(--line);
+    padding:15px 16px calc(15px + env(safe-area-inset-bottom, 0px));
+    padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px))}
+}
+/* extras and motion */
+a.brand{text-decoration:none}
+.faq summary{list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+"; font-family:var(--display); font-weight:800; font-size:1.3rem; line-height:1}
+.faq details[open] summary::after{rotate:45deg}
+.btn:active,.pick:active{transform:translate(3px,3px); box-shadow:1px 1px 0 var(--sh)}
+.demo .pick:active{box-shadow:1px 1px 0 #101010}
+.progress{position:fixed; top:env(safe-area-inset-top, 0px); left:0; right:0; height:4px; background:var(--accent); transform-origin:0 50%; transform:scaleX(0); z-index:20; pointer-events:none}
+.totop{position:fixed; right:calc(16px + env(safe-area-inset-right, 0px)); bottom:calc(20px + env(safe-area-inset-bottom, 0px)); z-index:6;
+  width:48px; height:48px; border-radius:12px; font:700 22px/1 var(--display); cursor:pointer;
+  background:var(--surface); color:var(--fg); border:2px solid var(--line); box-shadow:3px 3px 0 var(--sh);
+  opacity:0; pointer-events:none; translate:0 12px}
+.totop.show{opacity:1; pointer-events:auto; translate:0 0}
+@media (max-width:720px){ .totop{bottom:calc(84px + env(safe-area-inset-bottom, 0px))} }
+
+@media (prefers-reduced-motion: no-preference){
+  .hero>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+  .hero>*:nth-child(2){animation-delay:.09s}
+  .hero>*:nth-child(3){animation-delay:.18s}
+  .hero>*:nth-child(4){animation-delay:.27s}
+  .stick{animation:slideup .5s .5s cubic-bezier(.2,.7,.2,1) both}
+  .sticker{animation:float 4s ease-in-out infinite}
+  .sticker:nth-child(2){animation-delay:-1.3s}
+  .sticker:nth-child(3){animation-delay:-2.6s}
+  .btn,.pick{transition:transform .12s, box-shadow .12s}
+  .card,.demo,.steps li,.faq details{transition:translate .25s, rotate .25s, box-shadow .25s}
+  .card:hover{translate:0 -5px; box-shadow:8px 10px 0 var(--sh)}
+  .steps li:hover,.faq details:hover{translate:0 -3px}
+  .demo:hover{rotate:0deg; translate:0 -7px}
+  .faq summary::after{transition:rotate .2s}
+  .totop{transition:opacity .25s, translate .25s}
+  .js-anim .reveal{opacity:0; translate:0 28px; transition:opacity .6s ease, translate .6s cubic-bezier(.2,.7,.2,1); transition-delay:var(--d, 0ms)}
+  .js-anim .reveal.in{opacity:1; translate:0 0}
+}
+@keyframes rise{from{opacity:0; translate:0 22px} to{opacity:1; translate:0 0}}
+@keyframes float{0%,100%{translate:0 0} 50%{translate:0 -6px}}
+@keyframes slideup{from{translate:0 100%} to{translate:0 0}}
+</style>
+
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" id="brand" href="#order">Мини-студия визиток</a>
+    <nav>
+      <a href="#prices">Услуги</a>
+      <a href="#examples">Примеры</a>
+      <a href="#faq">Вопросы</a>
+      <a class="go" href="#order">Заказать</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Сделаю визитку для твоего дела <span class="mark">за пару дней</span></h1>
+    <p class="lead">Одна ссылка с прайсом, адресом и кнопками «Написать в WhatsApp и Telegram». Ставишь её в Инстаграм или чат, и клиенты сразу находят всё нужное.</p>
+    <div class="stickers">
+      <span class="sticker">от 300 ₽</span>
+      <span class="sticker">1–2 дня</span>
+      <span class="sticker">2 правки</span>
+    </div>
+    <div class="cta-row">
+      <a class="btn tg-link" href="#order">Написать в Telegram</a>
+      <a class="btn alt" href="#order">Описать, что нужно</a>
+    </div>
+  </section>
+
+  <p class="who">Подойдёт барбершопам, мастерам маникюра, репетиторам, небольшим кафе и магазинам.</p>
+
+  <section class="sec" id="prices">
+    <h2>Что делаю</h2>
+    <div class="cards">
+      <div class="card"><h3>Страничка-визитка</h3><div class="price">300 ₽</div><p class="muted">Имя, чем занимаешься, кнопки связи, прайс, адрес, часы работы.</p><button type="button" class="pick" data-type="0">Заказать</button></div>
+      <div class="card"><h3>Прайс или меню на странице</h3><div class="price">300 ₽</div><p class="muted">Список услуг или блюд, который открывается по ссылке с телефона.</p><button type="button" class="pick" data-type="1">Заказать</button></div>
+      <div class="card"><h3>Обложка или баннер</h3><div class="price">200 ₽</div><p class="muted">Картинка для шапки группы или поста: твой текст, цвета и шрифт.</p><button type="button" class="pick" data-type="2">Заказать</button></div>
+      <div class="card"><h3>Простой логотип</h3><div class="price">400 ₽</div><p class="muted">Знак из букв и простых форм. Пришлю в PNG на светлом и тёмном фоне.</p><button type="button" class="pick" data-type="3">Заказать</button></div>
+      <div class="card wide"><h3>Нужно что-то другое?</h3><p class="muted">Напиши, что у тебя в голове. Скажу, возьмусь ли я, и сколько это будет стоить.</p><button type="button" class="pick" data-type="4">Описать задачу</button></div>
+    </div>
+  </section>
+
+  <section class="sec" id="examples">
+    <h2>Примеры страничек</h2>
+    <div class="demos">
+      <div class="demo" style="background:#ffd9bf; color:#101010">
+        <div class="av" style="background:#c94f0a">Б</div><b>Бородач</b><span class="t">Барбершоп без очереди</span>
+        <div class="r"><span>Стрижка</span><span>800 ₽</span></div>
+        <div class="r"><span>Борода</span><span>600 ₽</span></div>
+        <button type="button" class="pick" data-type="0" style="background:#c94f0a">Хочу такую же</button>
+      </div>
+      <div class="demo" style="background:#ffc8dc; color:#101010">
+        <div class="av" style="background:#d6336c">А</div><b>Алина</b><span class="t">Маникюр на дому</span>
+        <div class="r"><span>Покрытие</span><span>1200 ₽</span></div>
+        <div class="r"><span>Дизайн ногтя</span><span>100 ₽</span></div>
+        <button type="button" class="pick" data-type="0" style="background:#d6336c">Хочу такую же</button>
+      </div>
+      <div class="demo" style="background:#c9dcff; color:#101010">
+        <div class="av" style="background:#2f4bff">М</div><b>Математика с Мариной</b><span class="t">Подготовка к ОГЭ</span>
+        <div class="r"><span>Урок 60 минут</span><span>700 ₽</span></div>
+        <div class="r"><span>Пробный урок</span><span>300 ₽</span></div>
+        <button type="button" class="pick" data-type="0" style="background:#2f4bff">Хочу такую же</button>
+      </div>
+    </div>
+    <p class="note">Это демонстрационные примеры, а не работы для реальных клиентов. Имена и цены придуманы.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Как заказать</h2>
+    <ol class="steps">
+      <li><div><b>Опиши, что нужно</b><span class="muted">Выбери услугу и напиши своими словами, что должно получиться.</span></div></li>
+      <li><div><b>Отправь заявку мне в Telegram</b><span class="muted">Одна кнопка: текст копируется и открывается чат со мной.</span></div></li>
+      <li><div><b>Согласуем детали и предоплату 50%</b><span class="muted">Уточню цвета, прайс и контакты. Оплата переводом по СБП.</span></div></li>
+      <li><div><b>Получишь макет и ссылку</b><span class="muted">Две правки бесплатно, потом оплата второй половины.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="sec" id="faq">
+    <h2>Частые вопросы</h2>
+    <div class="faq">
+      <details><summary>За сколько времени делаешь?</summary><p>Обычно за 1–2 дня после того, как получил все данные и предоплату.</p></details>
+      <details><summary>Что нужно от меня?</summary><p>Название, чем занимаешься, услуги с ценами, контакты и адрес, если он есть. Любимые цвета можно указать в заявке.</p></details>
+      <details><summary>Как оплатить?</summary><p>Переводом по СБП. Реквизиты пришлю в Telegram. Предоплата 50%, остальное после согласования макета.</p></details>
+      <details><summary>Что если захочу поменять?</summary><p>Две правки входят в цену. Напиши, что исправить, и я поменяю.</p></details>
+      <details><summary>Что я получу в конце?</summary><p>Ссылку на готовую страницу и сам файл. Ссылку можно ставить в Инстаграм, чаты и на визитки.</p></details>
+    </div>
+  </section>
+
+  <section class="sec" id="order">
+    <h2>Заявка</h2>
+    <p class="sub">Напиши, что нужно, своими словами. Если не знаешь точных слов, ничего страшного: уточним в чате.</p>
+    <form class="form" id="f" autocomplete="off">
+      <div class="field">
+        <label for="type">Что нужно</label>
+        <select id="type">
+          <option>Страничка-визитка (300 ₽)</option>
+          <option>Прайс или меню на странице (300 ₽)</option>
+          <option>Обложка или баннер (200 ₽)</option>
+          <option>Простой логотип (400 ₽)</option>
+          <option>Другое, опишу сам (цена по договорённости)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="biz">Название или имя</label>
+        <input type="text" id="biz" placeholder="Например: Барбершоп «Бородач»" maxlength="80">
+      </div>
+      <div class="field">
+        <label for="about">Опиши своими словами, что тебе нужно</label>
+        <textarea id="about" placeholder="Чем занимаешься, что показать на странице, какие цвета нравятся, для чего это нужно" maxlength="1000"></textarea>
+      </div>
+      <div class="field">
+        <label for="contact">Как с тобой связаться</label>
+        <input type="text" id="contact" placeholder="Telegram или телефон" maxlength="60">
+      </div>
+      <div class="field">
+        <span class="lab">Текст заявки</span>
+        <div class="out" id="out"></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn" id="send" href="#order" target="_blank" rel="noopener">Отправить в Telegram</a>
+        <button type="button" class="btn alt" id="copy">Только скопировать</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <textarea id="fallback" readonly hidden aria-label="Текст заявки"></textarea>
+    </form>
+  </section>
+
+  <footer>
+    <p>Принимаю заказы в Telegram: <a class="tg-link tg-handle" href="#order"></a>. Работаю один, поэтому отвечаю в течение дня.</p>
+    <p>Предоплата 50%, остальное после согласования макета.</p>
+  </footer>
+</div>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<button type="button" class="totop" id="totop" aria-label="Наверх">↑</button>
+<a class="stick tg-link" href="#order">Написать в Telegram</a>
+
+<script>
+const CONFIG = { name: 'Мини-студия визиток', tg: 'choon1Ezz' };
+
+const $ = id => document.getElementById(id);
+$('brand').textContent = CONFIG.name;
+const tgBase = 'https://t.me/' + CONFIG.tg;
+document.querySelectorAll('.tg-link').forEach(a => { a.href = tgBase; a.target = '_blank'; a.rel = 'noopener'; });
+
+function message(){
+  const type = $('type').value;
+  const biz = $('biz').value.trim() || '(напишу в чате)';
+  const about = $('about').value.trim() || '(пока не описано)';
+  const contact = $('contact').value.trim() || '(напишу в этом чате)';
+  return 'Здравствуйте! Хочу заказать: ' + type + '.\nНазвание: ' + biz + '\nЧто нужно: ' + about + '\nСвязь со мной: ' + contact;
+}
+function render(){
+  const m = message();
+  $('out').textContent = m;
+  $('send').href = tgBase + '?text=' + encodeURIComponent(m.slice(0, 900));
+}
+['type','biz','about','contact'].forEach(id => { $(id).addEventListener('input', render); $(id).addEventListener('change', render); });
+$('f').addEventListener('submit', e => e.preventDefault());
+
+function valid(){
+  if (!$('about').value.trim()){
+    $('status').textContent = 'Опиши своими словами, что тебе нужно, и нажми ещё раз.';
+    $('about').focus();
+    return false;
+  }
+  return true;
+}
+function copyText(onDone){
+  const m = message();
+  const fb = $('fallback');
+  fb.value = m;
+  const fail = () => { fb.hidden = false; $('status').textContent = 'Само не скопировалось. Текст выделен ниже: скопируй его и вставь в Telegram.'; fb.select(); };
+  if (!navigator.clipboard){ fail(); return; }
+  navigator.clipboard.writeText(m).then(() => { fb.hidden = true; onDone(); }).catch(fail);
+}
+$('copy').addEventListener('click', () => {
+  if (!valid()) return;
+  copyText(() => { $('status').textContent = 'Заявка скопирована. Открой Telegram и вставь её в чат.'; });
+});
+$('send').addEventListener('click', e => {
+  if (!valid()){ e.preventDefault(); return; }
+  copyText(() => { $('status').textContent = 'Заявка скопирована и открыт чат. Если текст не появился в поле ввода, просто вставь его.'; });
+});
+
+document.querySelectorAll('.pick').forEach(b => b.addEventListener('click', () => {
+  $('type').selectedIndex = Number(b.dataset.type);
+  render();
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $('order').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+  if (b.dataset.type === '4') setTimeout(() => $('about').focus({ preventScroll: true }), 400);
+}));
+document.querySelectorAll('.tg-handle').forEach(a => { a.textContent = '@' + CONFIG.tg; });
+
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const toTop = () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+$('brand').addEventListener('click', e => { e.preventDefault(); toTop(); });
+$('totop').addEventListener('click', toTop);
+
+let ticking = false;
+function onScroll(){
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  const p = h > 0 ? Math.min(1, window.scrollY / h) : 0;
+  $('progress').style.transform = 'scaleX(' + p + ')';
+  $('totop').classList.toggle('show', window.scrollY > 600);
+  ticking = false;
+}
+window.addEventListener('scroll', () => { if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+onScroll();
+
+if (!reduceMotion && 'IntersectionObserver' in window){
+  document.documentElement.classList.add('js-anim');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      el.classList.add('in');
+      io.unobserve(el);
+      setTimeout(() => { el.classList.remove('reveal', 'in'); el.style.removeProperty('--d'); }, 1000);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  document.querySelectorAll('.card, .demo, .steps li, .faq details, .form, .who, h2, .sub, .note').forEach(el => {
+    const idx = Math.min([...el.parentElement.children].indexOf(el), 5);
+    el.style.setProperty('--d', (idx * 80) + 'ms');
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+}
+render();
+</script>
+
+</body>
+</html>
