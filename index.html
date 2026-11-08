@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мини-студия визиток</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Rubik:wght@600;700&display=swap">
+<style>
+/* Layout: single column storefront, hero then price cards, demo work, ordering steps, request form. Violet ink on lilac, one yellow highlight. */
+:root{
+  --bg:#f5f2ff; --surface:#ffffff; --fg:#1d1535; --muted:#5f567f; --line:#ddd6f3;
+  --accent:#6c3cff; --accent-fg:#ffffff; --hl:#ffd84d; --hl-fg:#1d1535;
+  --display:'Rubik',system-ui,sans-serif; --body:'Onest',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#130e24; --surface:#1d1635; --fg:#efeaff; --muted:#a79dc8; --line:#33295a;
+    --accent:#9a7bff; --accent-fg:#130e24; --hl:#ffd84d; --hl-fg:#1d1535; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#130e24; --surface:#1d1635; --fg:#efeaff; --muted:#a79dc8; --line:#33295a;
+  --accent:#9a7bff; --accent-fg:#130e24; --hl:#ffd84d; --hl-fg:#1d1535; color-scheme:dark;
+}
+body{
+  background:var(--bg); color:var(--fg); font-family:var(--body); font-size:16px; line-height:1.55;
+  padding-block:0 56px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap{max-width:960px; margin:0 auto; display:grid; gap:64px}
+h1,h2,h3{font-family:var(--display); margin:0; line-height:1.12; text-wrap:balance}
+h2{font-size:clamp(1.5rem,5vw,2rem)}
+h3{font-size:1.15rem}
+p{margin:0}
+.muted{color:var(--muted)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent); outline-offset:3px}
+
+.top{display:flex; justify-content:space-between; align-items:center; gap:12px; padding-block:18px}
+.brand{font-family:var(--display); font-weight:700; font-size:1.05rem}
+.top a.small{font-size:14px; font-weight:600; text-decoration:none; color:var(--accent)}
+
+.hero{display:grid; gap:22px; max-width:680px; padding-top:12px}
+.hero h1{font-size:clamp(2.1rem,9vw,3.6rem); font-weight:700}
+.hl{background:var(--hl); color:var(--hl-fg); padding:0 .18em; border-radius:.2em; box-decoration-break:clone; -webkit-box-decoration-break:clone}
+.lead{font-size:1.1rem; color:var(--muted); max-width:52ch}
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+.btn{display:inline-block; font:inherit; font-weight:600; text-decoration:none; text-align:center; cursor:pointer;
+  background:var(--accent); color:var(--accent-fg); border:0; border-radius:14px; padding:15px 22px}
+.btn.alt{background:transparent; color:var(--fg); border:1.5px solid var(--line)}
+.facts{display:flex; flex-wrap:wrap; gap:8px 20px; font-size:14px; color:var(--muted); list-style:none; margin:0; padding:0}
+.facts li::before{content:""; display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--accent); margin-right:8px}
+
+.sec{display:grid; gap:20px}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr)); gap:14px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:20px; display:grid; gap:10px; align-content:start; min-width:0}
+.price{font-family:var(--display); font-weight:700; font-size:1.5rem}
+.price small{font-family:var(--body); font-weight:500; font-size:.8rem; color:var(--muted)}
+
+.demos{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr)); gap:16px}
+.demo{border-radius:22px; padding:22px 18px; display:grid; gap:14px; justify-items:center; text-align:center; border:1px solid var(--line); min-width:0}
+.demo .av{width:60px; height:60px; border-radius:50%; display:grid; place-items:center; font-weight:700; font-size:26px; color:#fff}
+.demo b{font-size:1.1rem}
+.demo .t{font-size:14px; opacity:.75}
+.demo .fake{width:100%; border-radius:12px; padding:11px; font-weight:600; font-size:14px; color:#fff}
+.demo .r{display:flex; justify-content:space-between; width:100%; gap:10px; font-size:14px; padding:6px 0; border-bottom:1px dashed rgba(127,127,127,.4)}
+.demo .r span:last-child{font-weight:700}
+.note{font-size:13px; color:var(--muted)}
+
+.steps{list-style:none; margin:0; padding:0; display:grid; gap:14px; counter-reset:s}
+.steps li{counter-increment:s; display:grid; grid-template-columns:44px minmax(0,1fr); gap:14px; align-items:start}
+.steps li::before{content:counter(s); width:44px; height:44px; border-radius:12px; background:var(--accent); color:var(--accent-fg); display:grid; place-items:center; font-family:var(--display); font-weight:700; font-size:1.2rem}
+.steps b{display:block}
+
+.form{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:22px; display:grid; gap:16px; min-width:0}
+.field{display:grid; gap:6px; min-width:0}
+.field label{font-size:13px; font-weight:600; color:var(--muted)}
+.field input,.field select,.field textarea{
+  width:100%; font:inherit; font-size:16px; color:var(--fg); background:var(--bg);
+  border:1.5px solid var(--line); border-radius:12px; padding:12px 14px}
+.field textarea{min-height:96px; resize:vertical}
+.out{font:14px/1.5 var(--body); white-space:pre-wrap; background:var(--bg); border:1.5px dashed var(--line); border-radius:12px; padding:14px; min-height:110px; overflow-wrap:anywhere}
+.status{min-height:1.5em; font-size:14px; color:var(--muted)}
+#fallback{width:100%; min-height:130px; font:14px/1.5 var(--body); border-radius:12px; border:1.5px solid var(--line); background:var(--bg); color:var(--fg); padding:12px}
+footer{font-size:14px; color:var(--muted); display:grid; gap:6px}
+</style>
+
+<style>body{margin:0}</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <span class="brand" id="brand">Мини-студия визиток</span>
+    <a class="small" id="tg-top" href="#order">Заказать</a>
+  </div>
+
+  <section class="hero">
+    <h1>Визитка для твоего дела <span class="hl">за 1–2 дня</span></h1>
+    <p class="lead">Одна ссылка с кнопками «Написать в WhatsApp и Telegram», прайсом, адресом и часами работы. Подходит для Инстаграма, чатов и стикеров на витрине.</p>
+    <div class="cta-row">
+      <a class="btn" href="#order">Оставить заявку</a>
+      <a class="btn alt" href="#examples">Посмотреть примеры</a>
+    </div>
+    <ul class="facts">
+      <li>от 300 ₽</li>
+      <li>2 правки включены</li>
+      <li>макет покажу до оплаты второй половины</li>
+    </ul>
+  </section>
+
+  <section class="sec" id="prices">
+    <h2>Что делаю</h2>
+    <div class="cards">
+      <div class="card"><h3>Страничка-визитка</h3><div class="price">300 ₽</div><p class="muted">Имя, чем занимаешься, кнопки связи, прайс, адрес, часы работы.</p></div>
+      <div class="card"><h3>Прайс или меню на странице</h3><div class="price">300 ₽</div><p class="muted">Удобный список услуг или блюд, который открывается по ссылке с телефона.</p></div>
+      <div class="card"><h3>Обложка или баннер</h3><div class="price">200 ₽</div><p class="muted">Картинка для шапки группы или поста: твой текст, цвета и шрифт.</p></div>
+      <div class="card"><h3>Простой логотип</h3><div class="price">400 ₽</div><p class="muted">Знак из букв и простых форм. Присылаю в PNG на светлом и тёмном фоне.</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="examples">
+    <h2>Примеры страничек</h2>
+    <div class="demos">
+      <div class="demo" style="background:#fff4ec; color:#3a2418">
+        <div class="av" style="background:#c94f0a">Б</div><b>Бородач</b><span class="t">Барбершоп без очереди</span>
+        <span class="fake" style="background:#c94f0a">Написать в WhatsApp</span>
+        <div class="r"><span>Стрижка</span><span>800 ₽</span></div>
+        <div class="r"><span>Борода</span><span>600 ₽</span></div>
+      </div>
+      <div class="demo" style="background:#fdeef4; color:#3b1626">
+        <div class="av" style="background:#d6336c">А</div><b>Алина</b><span class="t">Маникюр на дому</span>
+        <span class="fake" style="background:#d6336c">Написать в Telegram</span>
+        <div class="r"><span>Покрытие</span><span>1200 ₽</span></div>
+        <div class="r"><span>Дизайн ногтя</span><span>100 ₽</span></div>
+      </div>
+      <div class="demo" style="background:#eaf3ff; color:#13294b">
+        <div class="av" style="background:#2f4bff">М</div><b>Математика с Мариной</b><span class="t">Подготовка к ОГЭ</span>
+        <span class="fake" style="background:#2f4bff">Записаться на пробное</span>
+        <div class="r"><span>Урок 60 минут</span><span>700 ₽</span></div>
+        <div class="r"><span>Пробный урок</span><span>300 ₽</span></div>
+      </div>
+    </div>
+    <p class="note">Это демонстрационные примеры, а не работы для реальных клиентов. Имена и цены придуманы.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Как заказать</h2>
+    <ol class="steps">
+      <li><div><b>Заполни заявку ниже</b><span class="muted">Выбери, что нужно, и кратко напиши о своём деле.</span></div></li>
+      <li><div><b>Отправь её мне в Telegram</b><span class="muted">Текст соберётся сам, останется нажать «Скопировать» и вставить в чат.</span></div></li>
+      <li><div><b>Согласуем детали и предоплату 50%</b><span class="muted">Уточню цвета, прайс и контакты. Оплата переводом по СБП.</span></div></li>
+      <li><div><b>Получишь макет и ссылку</b><span class="muted">Две правки бесплатно, потом оплата второй половины.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="sec" id="order">
+    <h2>Заявка</h2>
+    <form class="form" id="f" autocomplete="off">
+      <div class="field">
+        <label for="type">Что нужно</label>
+        <select id="type">
+          <option>Страничка-визитка (300 ₽)</option>
+          <option>Прайс или меню на странице (300 ₽)</option>
+          <option>Обложка или баннер (200 ₽)</option>
+          <option>Простой логотип (400 ₽)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="biz">Название или имя</label>
+        <input type="text" id="biz" placeholder="Например: Барбершоп «Бородач»" maxlength="80">
+      </div>
+      <div class="field">
+        <label for="about">Чем занимаешься и что показать на странице</label>
+        <textarea id="about" placeholder="Услуги, цены, адрес, часы работы" maxlength="400"></textarea>
+      </div>
+      <div class="field">
+        <label for="contact">Как с тобой связаться</label>
+        <input type="text" id="contact" placeholder="Telegram или телефон" maxlength="60">
+      </div>
+      <div class="field">
+        <span class="muted" style="font-size:13px;font-weight:600">Текст заявки</span>
+        <div class="out" id="out"></div>
+      </div>
+      <div class="cta-row">
+        <button type="button" class="btn" id="copy">Скопировать заявку</button>
+        <a class="btn alt" id="tg-open" href="#order" target="_blank" rel="noopener">Открыть Telegram</a>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <textarea id="fallback" readonly hidden aria-label="Текст заявки"></textarea>
+    </form>
+  </section>
+
+  <footer>
+    <p>Принимаю заказы в Telegram. Работаю один, поэтому отвечаю в течение дня.</p>
+    <p>Предоплата 50%, остальное после согласования макета.</p>
+  </footer>
+</div>
+
+<script>
+/* Измени эти два значения: название студии и свой Telegram без @ */
+const CONFIG = { name: 'Мини-студия визиток', tg: 'choon1Ezz' };
+
+const $ = id => document.getElementById(id);
+document.getElementById('brand').textContent = CONFIG.name;
+const tgUrl = 'https://t.me/' + CONFIG.tg;
+$('tg-open').href = tgUrl;
+
+function message(){
+  const type = $('type').value;
+  const biz = $('biz').value.trim() || '(напишу позже)';
+  const about = $('about').value.trim() || '(расскажу в чате)';
+  const contact = $('contact').value.trim() || '(напишу в этом чате)';
+  return 'Здравствуйте! Хочу заказать: ' + type + '.\nНазвание: ' + biz + '\nО деле: ' + about + '\nСвязь со мной: ' + contact;
+}
+function render(){ $('out').textContent = message(); }
+['type','biz','about','contact'].forEach(id => { $(id).addEventListener('input', render); $(id).addEventListener('change', render); });
+$('f').addEventListener('submit', e => e.preventDefault());
+
+$('copy').addEventListener('click', async () => {
+  const text = message();
+  const fb = $('fallback');
+  fb.value = text;
+  try {
+    await navigator.clipboard.writeText(text);
+    fb.hidden = true;
+    $('status').textContent = 'Заявка скопирована. Нажми «Открыть Telegram» и вставь её в чат.';
+  } catch (e) {
+    fb.hidden = false; fb.focus(); fb.select();
+    $('status').textContent = 'Само не скопировалось. Текст выделен ниже, скопируй его и вставь в Telegram.';
+  }
+});
+render();
+</script>
+
+</body>
+</html>
